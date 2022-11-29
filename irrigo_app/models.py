@@ -12,31 +12,33 @@ class Account(AbstractUser):
     password = models.CharField(max_length=150)
     role = models.CharField(max_length=50)
     # PERSONAL INFORMATION
-    enrollment_type = models.CharField(max_length=15, null=True, blank=True)
-    date_administered = models.DateField(null=True, blank=True, default="2022-09-20")
+    enrollment_type = models.CharField(max_length=15, blank=True, default="")
+    date_administered = models.DateField(blank=True, default="2022-09-20")
 
-    middle_name = models.CharField(max_length=50, null=True, blank=True)
-    extension = models.CharField(max_length=12, null=True, blank=True)
-    sex = models.IntegerField(blank=True, null=True, default=0)
+    middle_name = models.CharField(max_length=50, blank=True, default="")
+    extension = models.CharField(max_length=12, blank=True, default="")
+    sex = models.IntegerField(blank=True, default=0)
     
-    date_of_birth = models.DateField(null=True, blank=True, default="2022-09-20")
-    place_of_birth = models.CharField(max_length=100, null=True, blank=True)
-    civil_status = models.CharField(max_length=20, null=True, blank=True)
+    date_of_birth = models.CharField(max_length=100, blank=True, default="")
+    place_of_birth = models.CharField(max_length=100, blank=True, default="")
+    civil_status = models.CharField(max_length=20, blank=True, default="")
 
-    educational_attainment = models.CharField(max_length=50, null=True, blank=True)
-    is_pwd = models.IntegerField(null=True, blank=True, default=0)
-    is_4ps_beneficiary = models.IntegerField(null=True, blank=True, default=0)
-    is_ip = models.IntegerField(null=True, blank=True, default=0)
+    educational_attainment = models.CharField(max_length=50, blank=True, default="")
+    is_pwd = models.IntegerField(blank=True, default=0)
+    is_4ps_beneficiary = models.IntegerField(blank=True, default=0)
+    is_ip = models.IntegerField(blank=True, default=0)
 
     # FARM PROFILE
-    main_livelihood = models.CharField(max_length=50, null=True, blank=True)
-    livelihood_product = models.CharField(max_length=50, null=True, blank=True)
-    laborer_activity = models.CharField(max_length=50, null=True, blank=True)
-    fishing_activity = models.CharField(max_length=50, null=True, blank=True)
-    involvement_type = models.CharField(max_length=50, null=True, blank=True)
+    main_livelihood = models.CharField(max_length=50, blank=True, default="")
+    livelihood_product = models.CharField(max_length=50, blank=True, default="")
+    laborer_activity = models.CharField(max_length=50, blank=True, default="")
+    fishing_activity = models.CharField(max_length=50, blank=True, default="")
+    involvement_type = models.CharField(max_length=50, blank=True, default="")
 
-    ownership_document = models.TextField(null=True, blank=True)
-    signature = models.TextField(null=True, blank=True)
+    ownership_document_name = models.CharField(max_length=100, blank=True, default="")
+    ownership_document = models.TextField(blank=True, default="")
+    signature_name = models.CharField(max_length=100, blank=True, default="")
+    signature = models.TextField(blank=True, default="")
     
 
     USERNAME_FIELD = 'email'

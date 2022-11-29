@@ -8,7 +8,8 @@ from irrigo_app.views import (
     CreateAccountView, 
     GetAccountView, 
     AllAccountsView,
-    UpdateAccountView
+    UpdateAccountView,
+    DeleteAccountView
 )
 
 urlpatterns = [
@@ -18,4 +19,5 @@ urlpatterns = [
     path("account/<int:pk>", GetAccountView.as_view(), name="accountView"),
     path("account_list/", AllAccountsView.as_view(), name="accountListView"),
     path("account/update", UpdateAccountView.as_view(), name="updateAccount"),
+    path("account/delete/<int:pk>", DeleteAccountView.as_view(), name="deleteAccount")
 ]
