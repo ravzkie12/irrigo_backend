@@ -7,6 +7,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from irrigo_app.models import Account
 from irrigo_app.serializers import AccountSerializer
 
+from django.db.models import Count
+from django.core.serializers.json import DjangoJSONEncoder
+import json
 # Create your views here.
 
 # ACOUNT MODEL VIEWS
@@ -52,3 +55,12 @@ class DeleteAccountView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = AccountSerializer
     queryset = Account.objects.all()
+
+
+class LivelihoodSummary(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        main_livelihoods = Account.objects.filter(role="farmer").values('main_livelihood').annotate(count=Count('main_livelihood'))
+        json_main_livelihoods = json.dumps(list(main_livelihoods), cls=DjangoJSONEncoder)
+        return Response(json_main_livelihoods)
